@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <bold><title>Mission to Mars</title></bold>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<!-- Make the background black -->
+<body class="text-black">
+    <div class="container">
+
+        <!-- Add the button to scrape with a background -->
+        <div class="jumbotron text-center" style="background-color: rgb(146, 50, 50)">
+            <h1 class="display-4">Mission to Mars</h1>
+            <a class="btn btn-lg text-white" style="background-color:rgb(0, 89, 255);" href="/scrape" role="button">Scrape New Data</a>
+        </div>
+
+        <!-- Add the latest title and description -->
+        <div class="container">
+            <h3 style="color: rgb(0, 89, 255)">Latest Mars News</h3>
+            <h6>{{ mars.news_title }}</h6>
+            <p>{{ mars.news_p }}</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <!-- Add the featured image -->
+                <div class="col-lg-8">
+                    <h3 style="color: rgb(0, 89, 255);">Featured Mars Image</h3>
+                    <img src="{{ mars.featured_image_url }}" style="max-width:100%; max-height: 100%;" alt="Featured Mars Image">
+                </div>
+
+                <!-- Create the table  -->
+                <div class="col-lg-4">
+                    <br>
+                    <h3 style="color: rgb(0, 89, 255); text-align: center;">Mars Facts</h3>
+                    <div style="max-width: 475px; max-height: 250px; font-size: 16px; margin-bottom: 65px;">
+                        {{mars.df_html|safe}}
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <!-- Add the hemisphere pictures -->
+        <h3 style="padding-top: 50px; margin-top: 100px; text-align: center; color: rgb(0, 89, 255)">Mars Hemispheres</h3>
+        <br>
+        <div class="card-deck">
+            <hr>
+            <div class="col-lg-12">
+                <div class="row">
+                    {% for picture in mars.hemisphere_info %}
+                    <div class="col-lg-6">
+                        <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" src="{{ picture.img_url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ picture.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
